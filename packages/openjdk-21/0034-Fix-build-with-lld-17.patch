@@ -1,7 +1,7 @@
-From bc77cbbb84d0cc36f629149ecbdbed11e31e7f6a Mon Sep 17 00:00:00 2001
+From 1ad5a4e392c14b3e3ddffbbcec4b68d5f618fd71 Mon Sep 17 00:00:00 2001
 From: agnostic-apollo <agnosticapollo@gmail.com>
 Date: Thu, 28 Mar 2024 18:52:49 +0100
-Subject: [PATCH 35/41] Fix build with lld 17
+Subject: [PATCH 34/40] Fix build with lld 17
 
 Original Author: Dimitry Andric <dim@FreeBSD.org>
 
@@ -25,5 +25,4 @@ index 182b01a6bb4..4da8076cb3f 100644
    endif
 -- 
 2.50.0
-# modified: see 0034
 

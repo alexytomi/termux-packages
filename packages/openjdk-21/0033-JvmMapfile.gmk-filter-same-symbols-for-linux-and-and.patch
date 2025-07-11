@@ -1,7 +1,7 @@
-From d4e4c8406157b22070fe430c9edb7826549ddf3c Mon Sep 17 00:00:00 2001
+From 3156091143c574e1cbe518210b089f7362ed9ed5 Mon Sep 17 00:00:00 2001
 From: Duy Tran Khanh <40482367+khanhduytran0@users.noreply.github.com>
 Date: Sat, 5 Jun 2021 17:25:37 +0700
-Subject: [PATCH 34/41] JvmMapfile.gmk: filter same symbols for linux and
+Subject: [PATCH 33/40] JvmMapfile.gmk: filter same symbols for linux and
  android
 
 ---
@@ -23,7 +23,4 @@ index 2808ac2af03..182b01a6bb4 100644
      FILTER_SYMBOLS_PATTERN := $(FILTER_SYMBOLS_PATTERN)|
 -- 
 2.50.0
-# modified:
-# -   DUMP_SYMBOLS_CMD := $(NM) --defined-only *$(OBJ_SUFFIX)
-# +   DUMP_SYMBOLS_CMD := $(NM) $(NMFLAGS) --defined-only *$(OBJ_SUFFIX)
 
