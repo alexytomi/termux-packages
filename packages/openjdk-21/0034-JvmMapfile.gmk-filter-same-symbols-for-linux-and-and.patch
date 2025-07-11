@@ -23,4 +23,7 @@ index 2808ac2af03..182b01a6bb4 100644
      FILTER_SYMBOLS_PATTERN := $(FILTER_SYMBOLS_PATTERN)|
 -- 
 2.50.0
+# modified:
+# -   DUMP_SYMBOLS_CMD := $(NM) --defined-only *$(OBJ_SUFFIX)
+# +   DUMP_SYMBOLS_CMD := $(NM) $(NMFLAGS) --defined-only *$(OBJ_SUFFIX)
 
