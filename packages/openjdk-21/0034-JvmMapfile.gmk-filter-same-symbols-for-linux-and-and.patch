@@ -1,6 +1,3 @@
-# modified:
-# -   DUMP_SYMBOLS_CMD := $(NM) --defined-only *$(OBJ_SUFFIX)
-# +   DUMP_SYMBOLS_CMD := $(NM) $(NMFLAGS) --defined-only *$(OBJ_SUFFIX)
 From b234acd243bf7b79e8ccdf63055785927de29ef4 Mon Sep 17 00:00:00 2001
 From: Duy Tran Khanh <40482367+khanhduytran0@users.noreply.github.com>
 Date: Sat, 5 Jun 2021 17:25:37 +0700
@@ -26,4 +23,7 @@ index d80b804a2..fd2a8ed15 100644
      FILTER_SYMBOLS_PATTERN := $(FILTER_SYMBOLS_PATTERN)|
 -- 
 2.45.2
+# modified:
+# -   DUMP_SYMBOLS_CMD := $(NM) --defined-only *$(OBJ_SUFFIX)
+# +   DUMP_SYMBOLS_CMD := $(NM) $(NMFLAGS) --defined-only *$(OBJ_SUFFIX)
 
