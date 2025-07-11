@@ -483,7 +483,7 @@ index bacff32ef..ba4f7960c 100644
 +                                                    "@TERMUX_PREFIX@/lib/arm-linux-gnueabi/libpcsclite.so",
 +                                                    "@TERMUX_PREFIX@/lib/arm-linux-gnueabihf/libpcsclite.so" };
      private static final String[] LIB_SUFFIXES = { ".1", ".0", "" };
-     private static final String PCSC_FRAMEWORK = "/System/Library/Frameworks/PCSC.framework/Versions/Current/PCSC";     
+     private static final String PCSC_FRAMEWORK = "/System/Library/Frameworks/PCSC.framework/Versions/Current/PCSC";
 
 diff --git a/src/jdk.hotspot.agent/linux/native/libsaproc/symtab.c b/src/jdk.hotspot.agent/linux/native/libsaproc/symtab.c
 index d3b4d3d1a..86a38bb92 100644
