@@ -1,0 +1,25 @@
+From f735a61c2f91dcf31ae52ee7edd3721a84962e63 Mon Sep 17 00:00:00 2001
+From: alexytomi <60690056+alexytomi@users.noreply.github.com>
+Date: Sun, 21 Dec 2025 22:43:25 +0800
+Subject: [PATCH] Fix failure to compile to 32-bit
+
+---
+ idevice/src/services/afc/inner_file.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/idevice/src/services/afc/inner_file.rs b/idevice/src/services/afc/inner_file.rs
+index bfd144e..dd8dea5 100644
+--- a/idevice/src/services/afc/inner_file.rs
++++ b/idevice/src/services/afc/inner_file.rs
+@@ -146,7 +146,7 @@ impl InnerFileDescriptor<'_> {
+         let mut collected_bytes = Vec::with_capacity(n);
+ 
+         for chunk in chunk_number(n, MAX_TRANSFER as usize) {
+-            let header_payload = [self.fd.to_le_bytes(), chunk.to_le_bytes()].concat();
++            let header_payload = [self.fd.to_le_bytes(), (chunk as u64).to_le_bytes()].concat();
+             let res = self
+                 .as_mut()
+                 .send_packet(AfcOpcode::Read, header_payload, Vec::new())
+-- 
+2.51.2
+
