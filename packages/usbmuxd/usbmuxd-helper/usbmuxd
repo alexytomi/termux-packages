@@ -1,10 +1,9 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -euo pipefail
 handle_sigint() {
-	exit_code=$?
 	echo -e "\nShutting down usbmuxd"
 	usbmuxd-bin -X
-	exit $exit_code
+	exit 130 # SIGINT
 }
 trap handle_sigint SIGINT
 loop_refresh_usb_fd() {
