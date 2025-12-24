@@ -27,9 +27,11 @@ loop_refresh_usb_fd() {
 			usbmuxd-bin -X
 			exit 1
 		else
-			# This doesn't match the behaviour on desktop. idevicepair hostid could be used but
-			# pretty much any program that uses libimobiledevice requires trust and assumes it is paired
-			# and errors out with vague messages if it isn't (LOCKDOWN_E_INVALID_HOST_ID).
+      # Possibly remove this and just swap out the repeat command with idevicepair pair.
+
+      # Imitates what happens on desktop, requesting trust as soon as plugged in. Some
+      # programs that rely on usbmuxd don't handle when a device is not paired (LOCKDOWN_E_INVALID_HOST_ID)
+      # so it is best to pair them upon connection.
 			echo "Can't connect to iDevice. Assuming unpaired. Please press \"trust\" on the iDevice."
 			idevicepair pair &> /dev/null || true
 			echo "Press any key after trusting to continue starting usbmuxd"
