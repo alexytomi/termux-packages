@@ -38,7 +38,7 @@ loop_refresh_usb_fd() {
 			idevicepair pair >/dev/null 2>&1 || true
 		fi
 	fi
-	echo "USB device connected! usbmuxd running"
+	echo "USB device connected! usbmuxd running. Ctrl+c to stop"
 	while true; do
 		if ! eval "$cmd_repeat" >/dev/null 2>&1; then
 			echo "USB device disconnected!"
