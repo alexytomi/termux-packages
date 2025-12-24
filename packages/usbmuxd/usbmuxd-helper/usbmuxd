@@ -82,7 +82,7 @@ while true; do
 			continue
 		fi
 		read -r vid pid product manufacturer <<<"$usb_info"
-		if [[ $vid == "05ac" ]]; then
+		if [[ $vid == "05ac" ]]; then # Apple's vendorId
 			usbmuxd-bin -X # Kill any running usbmuxd's
 			sleep 0.5      # Give it some time to die
 			loop_refresh_usb_fd "termux-usb -r -E -e usbmuxd-bin $dev" "idevicename"
