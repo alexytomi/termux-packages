@@ -1,0 +1,40 @@
+From b6b96324d340c7cbd05ce9699afe05be4d4ad9b9 Mon Sep 17 00:00:00 2001
+From: alexytomi <60690056+alexytomi@users.noreply.github.com>
+Date: Sat, 20 Dec 2025 23:25:36 +0800
+Subject: [PATCH] Disable Tauri Android Support
+
+Tauri has android APK/AAB support. We can't have that so we have to
+resort to this jank.
+
+Co-authored-by: Robert Kirkman <rkirkman@termux.dev>
+---
+ src-tauri/Cargo.toml | 2 +-
+ src-tauri/src/lib.rs | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src-tauri/Cargo.toml b/src-tauri/Cargo.toml
+index 7f2c4731..5ef72de6 100644
+--- a/src-tauri/Cargo.toml
++++ b/src-tauri/Cargo.toml
+@@ -33,5 +33,5 @@ reqwest = "0.12.23"
+ tokio = "1.48.0"
+ tauri-plugin-process = "2"
+ 
+-[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
++[target.'cfg(not(any(target_os = "disabling_this_because_it_is_for_building_an_apk", target_os = "ios")))'.dependencies]
+ tauri-plugin-updater = "2"
+diff --git a/src-tauri/src/lib.rs b/src-tauri/src/lib.rs
+index d0edbf7c..561ecdfe 100644
+--- a/src-tauri/src/lib.rs
++++ b/src-tauri/src/lib.rs
+@@ -19,7 +19,6 @@ use crate::{
+ };
+ use tauri::Manager;
+ 
+-#[cfg_attr(mobile, tauri::mobile_entry_point)]
+ pub fn run() {
+     tauri::Builder::default()
+         .plugin(tauri_plugin_process::init())
+-- 
+2.51.2
+

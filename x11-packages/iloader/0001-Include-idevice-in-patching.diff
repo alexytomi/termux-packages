@@ -1,0 +1,31 @@
+From 928e21f38a1995f3e196bc99297d883bf2c8a42c Mon Sep 17 00:00:00 2001
+From: alexytomi <60690056+alexytomi@users.noreply.github.com>
+Date: Mon, 22 Dec 2025 12:29:31 +0800
+Subject: [PATCH] Include idevice in patching
+
+idevice hardcodes the path of the usbmuxd socket into /var/run/usbmuxd
+rather than calling libusbmuxd and requesting `fd` with
+`usbmuxd_connect`
+
+We have to do this weirdness because cargo complains about duplicate
+keys if `version` is defined in the `[dependencies]` block
+---
+ src-tauri/Cargo.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src-tauri/Cargo.toml b/src-tauri/Cargo.toml
+index 7f2c4731..ac9855e2 100644
+--- a/src-tauri/Cargo.toml
++++ b/src-tauri/Cargo.toml
+@@ -22,7 +22,7 @@ tauri = { version = "2", features = ["devtools"] }
+ tauri-plugin-opener = "2"
+ serde = { version = "1", features = ["derive"] }
+ serde_json = "1"
+-idevice = { version = "0.1.50", features = ["usbmuxd", "house_arrest", "afc", "ring"], default-features = false}
++idevice = { path = "./vendor/idevice", features = ["usbmuxd", "house_arrest", "afc", "ring"], default-features = false}
+ isideload = { version = "0.1.22", features = ["vendored-openssl"] }
+ keyring = { version = "3.6.3", features = ["apple-native", "windows-native", "linux-native"] }
+ tauri-plugin-store = "2"
+-- 
+2.51.2
+
