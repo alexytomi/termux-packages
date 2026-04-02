@@ -195,21 +195,9 @@ jobs:
           done
         fi
 
-        echo "docker-build=$docker" >> $GITHUB_OUTPUT
-        if [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
-          # Build local Docker image if setup scripts were changed.
-          # Useful for pull requests submitting changes for both build environment and packages.
-          if grep -qP '^scripts/(Dockerfile|properties\.sh|setup-android-sdk\.sh|setup-ubuntu\.sh)$' <<< "$CHANGED_FILES"; then
-            echo "Detected changes for environment setup scripts. Building custom Docker image now."
-            if [ $docker == 'false' ]; then
-              echo "Skipping due to building large packages."
-              exit 0
-            fi
-            cd ./scripts
-            docker build -t ghcr.io/termux/package-builder:latest .
-            cd ..
-          fi
-        fi
+        cd ./scripts
+        docker build -t ghcr.io/termux/package-builder:latest .
+        cd ..
 
     - name: Lint packages
       run: |
